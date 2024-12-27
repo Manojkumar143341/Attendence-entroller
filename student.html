@@ -1,0 +1,459 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Student Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            position: relative;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            background-color: #007bff;
+            padding: 10px;
+            border-radius: 50%;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .profile-container:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-content {
+            display: none;
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 350px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #007bff;
+            margin: 10px auto;
+            object-fit: cover;
+        }
+
+        .profile-header h2 {
+            margin: 10px 0;
+            color: #007bff;
+            text-align: center;
+        }
+
+        .profile-info p {
+            text-align: center;
+        }
+
+        .update-form {
+            display:block;
+            flex-direction: column;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .update-form input, .update-form textarea {
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .update-form button {
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin-top: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .update-form button:hover {
+            background-color: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #343a40;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+
+
+
+
+    /* General Style */
+    body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #343a40;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            margin: 30px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+            padding: 20px;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion {
+            background-color: #f1f1f1;
+            color: #007bff;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            font-size: 18px;
+            transition: 0.4s;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .accordion:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .panel {
+            padding: 0 18px;
+            display: none;
+            background-color: #f9f9f9;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            padding: 12px 20px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .card {
+            background-color: #f1f1f1;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .card:hover {
+            background-color: #f9f9f9;
+        }
+
+        footer {
+            text-align: center;
+            background-color: #343a40;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to Your Profile</h1>
+</header>
+
+<!-- Profile Display Button -->
+<div class="profile-container" id="profile-btn">
+    <span>Profile</span>
+</div>
+
+<!-- Profile Content (Hidden by Default) -->
+<div class="profile-content" id="profile-content">
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-image" id="profile-img">
+        <h2 id="student-name">John Doe</h2>
+        <p id="student-id">Student ID: 123456789</p>
+    </div>
+
+    <div class="profile-info">
+        <p><strong>Course:</strong> <span id="student-course">Computer Science</span></p>
+        <p><strong>Email:</strong> <span id="student-email">johndoe@example.com</span></p>
+        <p><strong>Contact:</strong> <span id="student-contact">+1234567890</span></p>
+    </div>
+
+    <!-- Update Profile Section -->
+    <h2>Update Your Profile</h2>
+    <form class="update-form" id="update-form">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" placeholder="Enter Full Name" required />
+
+        <label for="course">Course:</label>
+        <input type="text" id="course" placeholder="Enter Course" required />
+
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" placeholder="Enter Email" required />
+
+        <label for="contact">Contact Number:</label>
+        <input type="text" id="contact" placeholder="Enter Contact Number" required />
+
+        <label for="profile-image">Profile Picture URL:</label>
+        <input type="text" id="profile-image" placeholder="Enter Profile Picture URL" />
+
+        <button type="submit">Update Profile</button>
+    </form>
+</div>
+
+
+
+<div class="container">
+    <h2>Student Dashboard</h2>
+
+    <!-- Student Feedback Section -->
+    <div class="section" id="feedback-section">
+        <button class="accordion">Give Feedback</button>
+        <div class="panel">
+            <form id="feedback-form">
+                <div class="form-group">
+                    <label for="feedback">Your Feedback:</label>
+                    <textarea id="feedback" rows="4" required></textarea>
+                </div>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Leave Request Section -->
+    <div class="section" id="leave-request-section">
+        <button class="accordion">Request Leave</button>
+        <div class="panel">
+            <form id="leave-form">
+                <div class="form-group">
+                    <label for="leave-date">Leave Date:</label>
+                    <input type="date" id="leave-date" required />
+                </div>
+                <div class="form-group">
+                    <label for="leave-reason">Reason for Leave:</label>
+                    <textarea id="leave-reason" rows="4" required></textarea>
+                </div>
+                <button type="submit">Request Leave</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Other Information Section -->
+    <div class="section" id="other-info-section">
+        <button class="accordion">Other Information</button>
+        <div class="panel">
+            <div class="card">
+                <h4>Upcoming Exams</h4>
+                <p>Final exams will begin on 10th January 2024. Be prepared!</p>
+            </div>
+            <div class="card">
+                <h4>Event: College Sports Meet</h4>
+                <p>Join us for the annual Sports Meet on 15th February 2024.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+    <p>&copy; 2024 XYZ University. All rights reserved.</p>
+</footer>
+
+<script>
+    // Show/Hide Profile Content when profile is clicked
+    const profileBtn = document.getElementById('profile-btn');
+    const profileContent = document.getElementById('profile-content');
+
+    profileBtn.addEventListener('click', function() {
+        // Toggle the visibility of profile content
+        if (profileContent.style.display === "block") {
+            profileContent.style.display = "none";
+        } else {
+            profileContent.style.display = "block";
+        }
+    });
+
+    // Handle the update profile form submission
+    document.getElementById('update-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value;
+        const course = document.getElementById('course').value;
+        const email = document.getElementById('email').value;
+        const contact = document.getElementById('contact').value;
+        const profileImageURL = document.getElementById('profile-image').value;
+
+        // Update profile details dynamically
+        document.getElementById('student-name').textContent = name;
+        document.getElementById('student-course').textContent = course;
+        document.getElementById('student-email').textContent = email;
+        document.getElementById('student-contact').textContent = contact;
+
+        // Update profile picture if URL is provided
+        if (profileImageURL) {
+            document.getElementById('profile-img').src = profileImageURL;
+        }
+
+        // Clear the form fields
+        document.getElementById('update-form').reset();
+        alert('Profile updated successfully!');
+    });
+
+
+    const accordions = document.querySelectorAll(".accordion");
+    accordions.forEach(accordion => {
+        accordion.addEventListener("click", function() {
+            this.classList.toggle("active");
+            const panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    });
+
+    // Handle feedback form submission
+    document.getElementById('feedback-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const feedback = document.getElementById('feedback').value;
+        alert('Feedback Submitted: ' + feedback);
+        document.getElementById('feedback-form').reset();
+    });
+
+    // Handle leave request form submission
+    document.getElementById('leave-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const leaveDate = document.getElementById('leave-date').value;
+        const leaveReason = document.getElementById('leave-reason').value;
+        alert('Leave Request Submitted\nDate: ' + leaveDate + '\nReason: ' + leaveReason);
+        document.getElementById('leave-form').reset();
+    });
+</script>
+
+</body>
+</html>

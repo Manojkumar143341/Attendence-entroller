@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>College Information Portal</title>
+    <style>
+        /* General Style */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #fff;
+            color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #f4f4f4;
+            border-radius: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: #fff;
+            width: 250px;
+            height: 250px;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
+            color: #4CAF50;
+        }
+
+        .card p {
+            color: #555;
+            font-size: 14px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: black;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            background: #333;
+            color: white;
+            padding: 15px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        form {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+        }
+
+        input[type="text"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #4CAF50;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to XYZ College</h1>
+    <p>Your gateway to the latest updates, events, and news</p>
+</header>
+
+<div class="container">
+    <h2>College News</h2>
+    <div class="card-wrapper" id="news-section"></div>
+
+    <h2>Upcoming Events</h2>
+    <div class="card-wrapper" id="events-section"></div>
+
+    <h2>Important Announcements</h2>
+    <div class="card-wrapper" id="announcements-section"></div>
+
+    <div>
+        <h2>Add New Information</h2>
+        <form id="content-form">
+            <label for="category">Select Category:</label>
+            <select id="category">
+                <option value="news">News</option>
+                <option value="events">Events</option>
+                <option value="announcements">Announcements</option>
+            </select>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" required />
+
+            <label for="details">Details:</label>
+            <textarea id="details" required></textarea>
+
+            <button type="submit">Add Information</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3 id="modal-title"></h3>
+        <p id="modal-details"></p>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 XYZ College. All rights reserved.</p>
+</footer>
+
+<script>
+    // Modal functionality
+    const modal = document.getElementById("modal");
+    const closeModal = document.getElementsByClassName("close")[0];
+
+    // Open modal
+    function openModal(title, details) {
+        document.getElementById("modal-title").textContent = title;
+        document.getElementById("modal-details").textContent = details;
+        modal.style.display = "block";
+    }
+
+    // Close modal
+    closeModal.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Add new content to the sections
+    document.getElementById('content-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const category = document.getElementById('category').value;
+        const title = document.getElementById('title').value;
+        const details = document.getElementById('details').value;
+
+        const newCard = `
+            <div class="card" onclick="openModal('${title}', '${details}')">
+                <h3>${title}</h3>
+                <p>${details.substring(0, 50)}...</p>
+            </div>
+        `;
+
+        if (category === 'news') {
+            document.getElementById('news-section').innerHTML += newCard;
+        } else if (category === 'events') {
+            document.getElementById('events-section').innerHTML += newCard;
+        } else if (category === 'announcements') {
+            document.getElementById('announcements-section').innerHTML += newCard;
+        }
+
+        document.getElementById('content-form').reset();
+    });
+</script>
+
+</body>
+</html>

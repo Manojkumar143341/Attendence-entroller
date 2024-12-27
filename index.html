@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Attendance</title>
+    <style>
+        /* General reset and styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            animation: fadeInPage 1s ease-in-out;
+        }
+
+        /* Navigation Bar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            padding: 15px 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .navbar .logo h1 {
+            color: #fff;
+            font-size: 26px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #ff6347;
+            transform: scale(1.1);
+        }
+
+        /* Home Services Section Styling */
+        .services {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+            position: relative;
+        }
+
+        .services h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .service-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .service-item {
+            background-color: #fff;
+            padding: 30px;
+            width: 250px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            background-color: #f8f9fa;
+        }
+
+        .service-item h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .service-item p {
+            font-size: 16px;
+            color: #777;
+        }
+
+        .service-item button {
+            background-color: #6a11cb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .service-item button:hover {
+            background-color: #2575fc;
+            transform: scale(1.1);
+        }
+
+        /* New Page Transition Effect */
+        @keyframes fadeInPage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .service-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-item {
+                width: 80%;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #6a11cb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #ff6347;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>CLASS ATTENDANCE</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+        </ul>
+    </nav>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2>Login with</h2>
+        <div class="service-container">
+            <div class="service-item">
+                <h3>H O D</h3>
+                <a href="hod_login.html">
+                    <button>Login</button>
+                </a>
+            </div>
+            <div class="service-item">
+                <h3>TUTOR</h3>
+                <a href="tutor.html">
+                    <button>Login</button>
+                </a>
+            </div>
+            <div class="service-item">
+                <h3>STUDENT LOGIN</h3>
+                <a href="student.html">
+                    <button>Login</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Class Attendance System | <a href="contact.html">Contact Us</a></p>
+    </footer>
+
+</body>
+</html>
